@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FirstTest {
     public static void main(String[] args) {
+        4
         SpringApplication.run(FirstTest.class,args);2
                 3
     }
