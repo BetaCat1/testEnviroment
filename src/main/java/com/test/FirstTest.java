@@ -12,6 +12,7 @@ public class FirstTest {
         4
         SpringApplication.run(FirstTest.class,args);2
                 3
+                        4
     }
 }
 3
