@@ -9,8 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FirstTest {
     public static void main(String[] args) {
-        3
         SpringApplication.run(FirstTest.class,args);2
+                3
     }
 }
 3
