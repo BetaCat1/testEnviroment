@@ -15,7 +15,3 @@ public class FirstTest {
                         4
     }
 }
-3
-2
-5
-4
