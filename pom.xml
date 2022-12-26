@@ -97,4 +97,17 @@
             <scope>runtime</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>MyApp</finalName>  <!-- 最终package打包的jar名称，注意这里没有版本号了。 -->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.test.FirstTest</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
