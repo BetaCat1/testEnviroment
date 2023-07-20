@@ -13,8 +13,10 @@ public class AspectClass {
 
     private static final String METHOD_EXECUTION =
             "execution(* com.test.service.AopService.show(..))";
+    private static final String ANNOTATION =
+            "@annotation(com.test.annotation.MyAnnotation)";
 
-    @Pointcut(METHOD_EXECUTION)
+    @Pointcut(ANNOTATION)
     public void methodCutting() {
     }
 
