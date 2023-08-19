@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class User1 {
     @JsonIgnore
-    private String name;
+    private Integer name;
 
-    public void setName(String name) {
-        this.name = name+"级部门";
-    }
+//    public void setName(String name) {
+//        this.name = name+"级部门";
+//    }
 }

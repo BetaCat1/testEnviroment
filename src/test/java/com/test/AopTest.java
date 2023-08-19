@@ -16,8 +16,8 @@ public class AopTest {
 
     @Test
     public void testAop() {
-        aopService.show("测试本地方法");
-
+//        aopService.show("测试本地方法");
+        aopService.getName1();
 
     }
 

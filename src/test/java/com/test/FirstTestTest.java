@@ -1,5 +1,8 @@
 package com.test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.test.controller.Student;
 import com.test.pojo.User;
 import com.test.pojo.User1;
@@ -103,4 +106,36 @@ public class FirstTestTest  {
         }
     }
 
+
+
+    @Test
+    public void testFastJson() {
+
+        User user = new User();
+        user.setName("111");
+        user.setAge(111);
+        String s = JSON.toJSONString(user,true);
+        System.out.println(s);
+
+        Object user1 = JSON.parseObject(s);
+        System.out.println(user1);
+
+        User1 user3 = JSON.parseObject(s, User1.class);
+        System.out.println("user3"+user3);
+        Object o = JSON.toJSON(user3);
+        JSON.toJavaObject((JSON)o, User1.class);
+        System.out.println("Object:  "+o);
+
+        Object parse = JSON.parse(s);
+        JSONObject jsonObject = (JSONObject) parse;
+        User user2 = jsonObject.toJavaObject(User.class);
+        System.out.println(user2);
+
+        List<User> input = new ArrayList<>();
+        input.add(user2);
+        String s1 = JSON.toJSONString(input);
+        System.out.println(s1);
+        JSONArray objects = JSON.parseArray(s1);
+        System.out.println(objects);
+    }
 }
