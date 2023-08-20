@@ -1,7 +1,9 @@
 package com.test.controller;
 
 import com.test.service.TestFinalService;
+import com.test.strategy.Strategy;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,6 +13,9 @@ public class MyController {
 
 
     private final TestFinalService testFinalService;
+
+    @Qualifier("ka")
+    private final Strategy ka;
 
     private int a = 0;
     @GetMapping(value = "/Repaired")
