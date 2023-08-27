@@ -7,6 +7,7 @@ import lombok.Data;
 public class User1 {
     @JsonIgnore
     private Integer name;
+    private Client client;
 
 //    public void setName(String name) {
 //        this.name = name+"级部门";
