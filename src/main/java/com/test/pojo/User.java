@@ -5,12 +5,12 @@ import lombok.Data;
 import java.util.*;
 
 @Data
-public class User {
+public class User<T> {
 
-    private String name;
-    private Integer age;
+    private String name = "朱卫东";
+    private Integer age=3;
 
-    private List<User1> User1s;
+    private List<T> User1s;
 
 
 

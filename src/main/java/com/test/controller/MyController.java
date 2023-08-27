@@ -9,6 +9,7 @@ import com.test.service.TestFinalService;
 import com.test.strategy.Strategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -84,10 +85,12 @@ public class MyController {
 
 
 
-    @GetMapping(value = "/rest")
+    @GetMapping(value = "/postrest")
     public  String getrestTem( ) {
         RestTemplate rest = new RestTemplate();
-        ResponseEntity<User> exchange = rest.exchange("http://192.168.31.48:8080/api/final", HttpMethod.GET, HttpEntity.EMPTY, User.class);
+        ResponseEntity<User<User1>> exchange = rest.exchange("http://192.168.31.48:8080/api/rest", HttpMethod.GET, HttpEntity.EMPTY, new ParameterizedTypeReference<User<User1>>(){});
+        String name = exchange.getBody().getUser1s().get(0).getClient().getName();
+        System.out.println(name);
         String x = JSON.toJSONString(exchange);
         System.out.println(x);
         return x;

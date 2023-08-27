@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class User1 {
     @JsonIgnore
-    private Integer name;
+    private Integer name =13;
     private Client client;
 
 //    public void setName(String name) {
