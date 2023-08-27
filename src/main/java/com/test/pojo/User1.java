@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Data
-public class User1 {
+public class User1<T> {
     @JsonIgnore
     private Integer name =13;
-    private Client client;
+    private T client;
 
 //    public void setName(String name) {
 //        this.name = name+"级部门";

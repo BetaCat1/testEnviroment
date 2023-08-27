@@ -3,6 +3,7 @@ package com.test.controller;
 import com.alibaba.fastjson.JSON;
 import com.test.exception.AgeException;
 import com.test.pojo.Client;
+import com.test.pojo.Client1;
 import com.test.pojo.User;
 import com.test.pojo.User1;
 import com.test.service.TestFinalService;
@@ -88,10 +89,11 @@ public class MyController {
     @GetMapping(value = "/postrest")
     public  String getrestTem( ) {
         RestTemplate rest = new RestTemplate();
-        ResponseEntity<User<User1>> exchange = rest.exchange("http://192.168.31.48:8080/api/rest", HttpMethod.GET, HttpEntity.EMPTY, new ParameterizedTypeReference<User<User1>>(){});
-        String name = exchange.getBody().getUser1s().get(0).getClient().getName();
+        ResponseEntity<User<User1<Client1>>> exchange = rest.exchange("http://192.168.31.48:8080/api/rest", HttpMethod.GET, HttpEntity.EMPTY, new ParameterizedTypeReference<User<User1<Client1>>>(){});
+        String name = exchange.getBody().getUser1s().get(0).getClient().getNumber();
+        User<User1<Client1>> body = exchange.getBody();
         System.out.println(name);
-        String x = JSON.toJSONString(exchange);
+        String x = JSON.toJSONString(body);
         System.out.println(x);
         return x;
     }
