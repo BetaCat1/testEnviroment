@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.test.controller.Student;
 import com.test.pojo.User;
 import com.test.pojo.User1;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 
@@ -137,5 +138,23 @@ public class FirstTestTest  {
         System.out.println(s1);
         JSONArray objects = JSON.parseArray(s1);
         System.out.println(objects);
+    }
+
+
+
+    @Test
+    @DisplayName("JSON.toJSONString确实会让字符串首尾多了双引号")
+    public void testJsonToString() {
+        String example = "{\\n\" +\n" +
+                "                \"    \\\"result\\\": \\\"\\\",\\n\" +\n" +
+                "                \"    \\\"creditId\\\": \\\"\\\",\\n\" +\n" +
+                "                \"    \\\"pageSize\\\": 10,\\n\" +\n" +
+                "                \"    \\\"tabNumber\\\": \\\"\\\",\\n\" +\n" +
+                "                \"    \\\"creditStatus\\\": \\\"\\\",\\n\" +\n" +
+                "                \"    \\\"customerName\\\": \\\"\\\",\\n\" +\n" +
+                "                \"    \\\"page\\\": 1\\n\" +\n" +
+                "                \"}";
+        System.out.println(example);
+        System.out.println(JSON.toJSONString(example));
     }
 }
