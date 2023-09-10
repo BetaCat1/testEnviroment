@@ -8,6 +8,7 @@ import com.test.pojo.Client1;
 import com.test.pojo.User;
 import com.test.pojo.User1;
 import com.test.service.TestFinalService;
+import com.test.service.ThreadException;
 import com.test.strategy.Strategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,8 +29,8 @@ public class MyController {
 
 
     private final TestFinalService testFinalService;
+    private final ThreadException threadException;
 
-    @Qualifier("ka")
     private final Strategy ka;
 
     private int a = 0;
@@ -101,6 +102,29 @@ public class MyController {
 
 
 
+    @GetMapping(value = "/thread")
+    public  void thread() {
+        int a = 0;
+        while (true) {
+            a++;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(a==10){
+                return;
+            }
+
+            System.out.println("主线程："+Thread.currentThread().getName());
+            threadException.exception();
+            System.out.println("主线程继续运行");
+        }
+
+
+
+
+    }
 
 
 
