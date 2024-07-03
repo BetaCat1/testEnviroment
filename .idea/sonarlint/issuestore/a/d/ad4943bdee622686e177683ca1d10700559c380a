@@ -1,13 +1,0 @@
-
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(ÇñæÓşÿÿÿÿ8–—íÈœ1
-U	java:S106"9Replace this use of System.out or System.err by a logger.(­†Š8š—íÈœ1
-Z	java:S106#"9Replace this use of System.out or System.err by a logger.(ŒÁ¨ùÿÿÿÿ8¤—íÈœ1
-j	java:S100'"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§©ª«8¦—íÈœ1
-Z	java:S106("9Replace this use of System.out or System.err by a logger.(¸øËæúÿÿÿÿ8¯—íÈœ1
-U	java:S106*"9Replace this use of System.out or System.err by a logger.(ÅôÉü8±—íÈœ1
-Y
-java:S1128"7Remove this unused import 'org.aspectj.lang.JoinPoint'.(¾Öùúÿÿÿÿ8É—íÈœ1
-a
-java:S1128"?Remove this unused import 'org.aspectj.lang.annotation.Aspect'.(˜Ú§®ıÿÿÿÿ8É—íÈœ1
-Q
-java:S1068"4Remove this unused "METHOD_EXECUTION" private field.(ô¿ö©8Ê—íÈœ1
