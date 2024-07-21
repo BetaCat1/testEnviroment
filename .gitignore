@@ -3,4 +3,4 @@
 
 *.pb
 *.class
-/sonarlint/
+/.idea/sonarlint/

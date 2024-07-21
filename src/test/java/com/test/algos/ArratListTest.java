@@ -179,4 +179,32 @@ public class ArratListTest {
         return res;
     }
 
+    @Test
+    @DisplayName("反转字符串")
+    public void test03() {
+//        String str = "    a good   example";
+        String str = "the sky is blue";
+        String res = solution03(str);
+        System.out.println(res);
+    }
+
+    private String solution03(String message){
+        String msg = message.trim();
+        StringBuilder sb = new StringBuilder();
+        int length = msg.toCharArray().length;
+        int i = length - 1, j = i;
+
+        while (i >= 0){
+            while (msg.charAt(i)==' '){
+                i--;
+            }
+            j = i;
+            while (i>=0&&msg.charAt(i) != ' ') {
+                i--;
+            }
+            sb.append(msg.substring(i+1,j+1)).append(" ");
+        }
+        return sb.toString().trim();
+    }
+
 }
