@@ -125,5 +125,33 @@ public class ArratListTest {
         }
         return  res.toArray(new int[0][]);
     }
+    
+    @Test
+    @DisplayName("按规则计算统计结果")
+    public void test01() {
+//        输出：[1920, 960, 640, 480, 384]
+        int[] inputs = {2, 4, 6, 8, 10};
+        statisticalResult(inputs);
+    }
+
+    public int[] statisticalResult(int[] a) {
+        //边界条件的判断
+        if (a == null || a.length == 0)
+            return a;
+        int length = a.length;
+        int[] res = new int[length];
+        res[0] = 1;
+
+        for (int i = 1; i <= res.length - 1; i++) {
+            res[i] = res[i - 1] * a[i-1];
+        }
+        int right = 1;
+
+        for (int i = res.length - 1; i >=0 ; i--) {
+            res[i] = res[i] * right;
+            right *= a[i];
+        }
+        return res;
+    }
 
 }
