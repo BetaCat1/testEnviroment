@@ -153,5 +153,30 @@ public class ArratListTest {
         }
         return res;
     }
+    
+    @Test
+    @DisplayName("螺旋遍历二维数组")
+    public void test02() {
+        int[][] inputs = {{1,2,3},{8,9,4},{7,6,5}};
+        System.out.println(Arrays.toString(spiralArray(inputs)));
+    }
+
+
+    public int[] spiralArray(int[][] array) {
+        if(array.length == 0) return new int[0];
+        int l = 0, r = array[0].length - 1, t = 0, b = array.length - 1, x = 0;
+        int[] res = new int[(r + 1) * (b + 1)];
+        while(true) {
+            for(int i = l; i <= r; i++) res[x++] = array[t][i]; // left to right
+            if(++t > b) break;
+            for(int i = t; i <= b; i++) res[x++] = array[i][r]; // top to bottom
+            if(l > --r) break;
+            for(int i = r; i >= l; i--) res[x++] = array[b][i]; // right to left
+            if(t > --b) break;
+            for(int i = b; i >= t; i--) res[x++] = array[i][l]; // bottom to top
+            if(++l > r) break;
+        }
+        return res;
+    }
 
 }
