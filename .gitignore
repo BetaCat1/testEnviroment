@@ -3,5 +3,6 @@
 
 *.pb
 *.class
-/.idea/sonarlint/
 /.idea/
+/common/
+/.idea/libraries/
