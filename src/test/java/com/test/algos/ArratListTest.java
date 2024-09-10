@@ -2,8 +2,12 @@ package com.test.algos;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
 
 import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 public class ArratListTest {
     @Test
@@ -205,6 +209,21 @@ public class ArratListTest {
             sb.append(msg.substring(i+1,j+1)).append(" ");
         }
         return sb.toString().trim();
+    }
+
+    @Test
+    @DisplayName("mockito")
+    public void testsadasd() {
+        //mock creation
+        List mockedList = mock(List.class);
+
+        //using mock object
+        mockedList.add("one");
+        mockedList.clear();
+
+        //verification
+        verify(mockedList).add("one");
+        verify(mockedList).clear();
     }
 
 }
