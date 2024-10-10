@@ -8,6 +8,7 @@ import com.test.pojo.Client1;
 import com.test.pojo.User;
 import com.test.pojo.User1;
 import com.test.service.TestFinalService;
+import com.test.service.WakeOnLan;
 import com.test.service.ThreadException;
 import com.test.strategy.Strategy;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.*;
 
@@ -50,7 +52,9 @@ public class MyController {
     @GetMapping(value = "/final")
     public  String getFinal(){
 
-        return testFinalService.show();
+        System.out.println("final方法被访问时间："+ LocalDateTime.now());
+        WakeOnLan.Wake("","192.168.1.255","1C-1B-0D-6C-A8-C2",9);
+        return "hello world";
     }
 
 
@@ -100,31 +104,6 @@ public class MyController {
         return x;
     }
 
-
-
-    @GetMapping(value = "/thread")
-    public  void thread() {
-        int a = 0;
-        while (true) {
-            a++;
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if(a==10){
-                return;
-            }
-
-            System.out.println("主线程："+Thread.currentThread().getName());
-            threadException.exception();
-            System.out.println("主线程继续运行");
-        }
-
-
-
-
-    }
 
 
 

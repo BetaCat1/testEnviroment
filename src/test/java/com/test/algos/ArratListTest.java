@@ -69,6 +69,7 @@ public class ArratListTest {
 //           i找偶数， 奇数就++
             for (; i <j ; ) {
                 if (actions[i] % 2 != 0) {
+//                    时间复杂度也是O(N)因为看似是双重循环，其实外部循环的次数是随着i和j的移动而变化的，最终只遍历了一遍
                     i++;
                 }else{
                     break;
@@ -129,7 +130,7 @@ public class ArratListTest {
         }
         return  res.toArray(new int[0][]);
     }
-    
+
     @Test
     @DisplayName("按规则计算统计结果")
     public void test01() {
@@ -157,7 +158,7 @@ public class ArratListTest {
         }
         return res;
     }
-    
+
     @Test
     @DisplayName("螺旋遍历二维数组")
     public void test02() {
@@ -225,5 +226,19 @@ public class ArratListTest {
         verify(mockedList).add("one");
         verify(mockedList).clear();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
