@@ -4,6 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -241,4 +245,17 @@ public class ArratListTest {
 
 
 
+
+    @Test
+    @DisplayName("文件")
+    public void test002() throws Exception {
+        File file = new File("C:\\Users\\ZWD\\Desktop\\感冒.txt");
+        FileInputStream fileInputStream = new FileInputStream(file);
+        while (fileInputStream.read()!=-1){
+            System.out.println((char) fileInputStream.read());
+        }
+    }
+
+
+    
 }
