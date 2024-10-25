@@ -103,7 +103,7 @@ public class LinkedTableAlgorithm {
 
 
     @Test
-    @DisplayName("删除链表节点")
+    @DisplayName("倒置链表")
     public void test04() {
         /*输入: head = [4,5,1,9], val = 5
             输出: [4,1,9]*/
@@ -143,6 +143,65 @@ public class LinkedTableAlgorithm {
         next.setNext(cur);
         return res;
 
+    }
+
+    @Test
+    @DisplayName("训练计划 IV")
+    public void test05() {
+        /*输入：l1 = [1,2,4], l2 = [1,3,4]
+        输出：[1,1,2,3,4,4]*/
+        int[] inputs = {1,2,3,4,5};
+        ListNode l1 = linkedFactory(new int[]{1,2,4});
+        ListNode l2 = linkedFactory(new int[]{1,3,4});
+
+        ListNode res = trainningPlan1(l1,l2);
+        System.out.println(res);
+    }
+
+    public ListNode trainningPlan1(ListNode l1, ListNode l2) {
+        if(l1==null){
+            return l2;
+        }
+        if(l2==null){
+            return l1;
+        }
+        ListNode res = null;
+        ListNode cur = null;
+        while(l1!=null&&l2!=null){
+            if (res==null) {
+                if(l1.getVal()<=l2.getVal()){
+                    res = l1;
+                    l1 = l1.getNext();
+                }else {
+                    res = l2;
+                    l2 = l2.getNext();
+                }
+                cur = res;
+                continue;
+            }
+
+            if(l1.getVal()<=l2.getVal()){
+                cur.setNext(l1);
+                cur = cur.getNext();
+
+                l1 = l1.getNext();
+            }else {
+                cur.setNext(l2);
+                cur = cur.getNext();
+                l2 = l2.getNext();
+            }
+
+            if(l1==null){
+                cur.setNext(l2);
+                cur = cur.getNext();
+            }
+            if(l2==null ){
+                cur.setNext(l1);
+                cur = cur.getNext();
+            }
+        }
+
+        return res;
     }
 
 }
