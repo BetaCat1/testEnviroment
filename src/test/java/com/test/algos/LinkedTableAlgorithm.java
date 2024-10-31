@@ -204,4 +204,14 @@ public class LinkedTableAlgorithm {
         return res;
     }
 
+    @Test
+    @DisplayName("测试private")
+    public void test06() {
+        ShouldPrivate s1 = new ShouldPrivate("兄弟1");
+        ShouldPrivate s2 = new ShouldPrivate("兄弟2");
+        String otherName = s1.getOtherName(s2);
+        System.out.println(otherName);
+        //确实可以访问到，原来private的限制是“只能在定义它们的类内部访问”是这个含义，重点在于类而不是对象。
+    }
+
 }
