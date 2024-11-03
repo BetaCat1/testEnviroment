@@ -112,4 +112,44 @@ public class TreeNodeTest {
         return res;
     }
 
+    @Test
+    @DisplayName("彩灯装饰记录 III")
+    public void test04() {
+//        输入：heights = [14,2,27,-5,28,13,39], limit = 3
+//输出：[27,27,28,28,39]
+//        Integer[] input  = new Integer[]{8,17,21,18,null,null,6};
+        Integer[] input  = new Integer[]{1,2,3,4,5};
+        TreeNode treeNode = arrayToTreeList(input, 0);
+        System.out.println(decorateRecord02(treeNode));
+    }
+
+    public List<List<Integer>> decorateRecord02(TreeNode root) {
+        Stack<TreeNode> queue = new Stack<>();
+        List<List<Integer>> res = new ArrayList<>();
+        if(root != null)queue.push(root);
+        Boolean flag = true;
+        while (!queue.isEmpty()){
+            List<Integer> tmp = new ArrayList<>();
+            Stack<TreeNode> tmpS = new Stack<>();
+            for (int i = queue.size(); i >0; i--) {
+                TreeNode node = queue.pop();
+                tmp.add(node.getVal());
+
+                if (flag) {
+                    if(node.getLeft()!=null)tmpS.push(node.getLeft());
+                    if(node.getRight()!=null)tmpS.push(node.getRight());
+                }else {
+                    if(node.getRight()!=null)tmpS.push(node.getRight());
+                    if(node.getLeft()!=null)tmpS.push(node.getLeft());
+
+                }
+
+            }
+            flag = !flag;
+            queue = tmpS;
+            res.add(tmp);
+        }
+        return res;
+    }
+
 }
