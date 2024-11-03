@@ -83,5 +83,33 @@ public class TreeNodeTest {
         return resArr;
     }
 
+    @Test
+    @DisplayName("彩灯装饰记录 II")
+    public void test03() {
+//        输入：heights = [14,2,27,-5,28,13,39], limit = 3
+//输出：[27,27,28,28,39]
+        Integer[] input  = new Integer[]{8,17,21,18,null,null,6};
+        TreeNode treeNode = arrayToTreeList(input, 0);
+        System.out.println(decorateRecord01(treeNode));
+    }
+
+
+    public List<List<Integer>> decorateRecord01(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        if(root != null)queue.add(root);
+        while (!queue.isEmpty()){
+            List<Integer> tmp = new ArrayList<>();
+            for (int i = queue.size(); i >0; i--) {
+                TreeNode node = queue.poll();
+                tmp.add(node.getVal());
+                if(node.getLeft()!=null)queue.offer(node.getLeft());
+                if(node.getRight()!=null)queue.offer(node.getRight());
+
+            }
+            res.add(tmp);
+        }
+        return res;
+    }
 
 }
