@@ -152,4 +152,32 @@ public class TreeNodeTest {
         return res;
     }
 
+    @Test
+    @DisplayName("子结构判断")
+    public void test05() {
+//        输入：heights = [14,2,27,-5,28,13,39], limit = 3
+//输出：[27,27,28,28,39]
+//        Integer[] input  = new Integer[]{8,17,21,18,null,null,6};
+        Integer[] A  = new Integer[]{3,6,7,1,8};
+        Integer[] B  = new Integer[]{6,1};
+        TreeNode treeNodeA = arrayToTreeList(A, 0);
+        TreeNode treeNodeB = arrayToTreeList(B, 0);
+        System.out.println(isSubStructure(treeNodeA,treeNodeB));
+    }
+
+
+    public boolean isSubStructure(TreeNode A, TreeNode B) {
+        return (A != null && B != null) && (recur(A, B)
+                || isSubStructure(A.getLeft(), B)
+                || isSubStructure(A.getRight(), B));
+
+    }
+
+    public boolean recur(TreeNode A, TreeNode B) {
+        if (B==null) return true;
+        if(A == null || A.getVal() != B.getVal()) return false;
+        return recur(A.getLeft(), B.getLeft()) && recur(A.getRight(), B.getRight());
+
+    }
+
 }
