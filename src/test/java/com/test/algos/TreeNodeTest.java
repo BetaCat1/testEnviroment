@@ -180,4 +180,27 @@ public class TreeNodeTest {
 
     }
 
+
+    @Test
+    @DisplayName("翻转二叉树")
+    public void test06() {
+        Integer[] A  = new Integer[]{5,7,9,8,3,2,4};
+        TreeNode treeNodeA = arrayToTreeList(A, 0);
+        System.out.println(flipTree(treeNodeA));
+    }
+
+    public TreeNode flipTree(TreeNode root) {
+        if (root ==null) return null;
+        TreeNode left = root.getLeft();
+        TreeNode right = root.getRight();
+        TreeNode tmp = left;
+        root.setLeft(right);
+        root.setRight(tmp);
+        flipTree(left);
+        flipTree(right);
+
+        return root;
+
+    }
+
 }
