@@ -203,4 +203,27 @@ public class TreeNodeTest {
 
     }
 
+
+    @Test
+    @DisplayName("判断对称二叉树")
+    public void test07() {
+        Integer[] A  = new Integer[]{5,7,9,8,3,2,4};
+        TreeNode treeNodeA = arrayToTreeList(A, 0);
+        System.out.println(checkSymmetricTree(treeNodeA));
+    }
+
+    public boolean checkSymmetricTree(TreeNode root) {
+        return root==null&&recursive(root.getLeft(), root.getRight());
+
+    }
+
+    private boolean recursive(TreeNode a, TreeNode b) {
+        if(a==null&&b==null){
+            return true;
+        }
+        if (a.getVal()==b.getVal()) return true;
+        if (a==null||b==null||(a.getVal() != b.getVal())) return false;
+        return   recursive(a.getRight(), b.getLeft()) && recursive(a.getLeft(), b.getRight());
+    }
+
 }
