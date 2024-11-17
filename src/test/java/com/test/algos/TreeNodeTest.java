@@ -8,6 +8,7 @@ import java.util.*;
 
 public class TreeNodeTest {
 
+    TreeNode head,pre;
     @Test
     @DisplayName("彩灯装饰记录 I")
     public void test01() {
@@ -224,6 +225,45 @@ public class TreeNodeTest {
         if (a.getVal()==b.getVal()) return true;
         if (a==null||b==null||(a.getVal() != b.getVal())) return false;
         return   recursive(a.getRight(), b.getLeft()) && recursive(a.getLeft(), b.getRight());
+    }
+
+    @Test
+    @DisplayName("将二叉搜索树转化为排序的双向链表")
+    public void test08() {
+        Integer[] A  = new Integer[]{5,7,9,8,3,2,4};
+        TreeNode treeNodeA = arrayToTreeList(A, 0);
+        System.out.println(treeToDoublyList(treeNodeA));
+    }
+
+
+    public TreeNode treeToDoublyList(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        dfs(root);
+        head.setLeft(pre);
+        pre.setRight(head);
+        return head;
+
+    }
+
+    private void dfs(TreeNode node){
+        TreeNode cur=null;
+        if (node!=null) {
+            cur = node;
+            cur.setLeft(pre);
+        }else {
+            return;
+        }
+        dfs(node.getLeft());
+        if(head!=null){
+            pre.setRight(cur);
+        }else {
+            head = cur;
+        }
+        pre = cur;
+        dfs(node.getRight());
+
     }
 
 }

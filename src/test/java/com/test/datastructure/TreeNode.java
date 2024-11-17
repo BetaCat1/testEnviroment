@@ -14,13 +14,13 @@ public class TreeNode {
         this.left = left;
         this.right = right;
     }
-    @Override
-    public String toString(){
-        return "    " + getVal() + "\n" +
-                "  /" + "   " + "\\" +"\n"+
-                (left==null?"null":left.toString()) + "          "
-                + (right==null?"null":right.toString()) +"\n";
-    }
+//    @Override
+//    public String toString(){
+//        return "    " + getVal() + "\n" +
+//                "  /" + "   " + "\\" +"\n"+
+//                (left==null?"null":left.toString()) + "          "
+//                + (right==null?"null":right.toString()) +"\n";
+//    }
 
 //    @Override
 //    public String toString(){
