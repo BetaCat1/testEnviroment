@@ -266,4 +266,26 @@ public class TreeNodeTest {
 
     }
 
+
+    @Test
+    @DisplayName("计算二叉树的深度")
+    public void test09() {
+        Integer[] A  = new Integer[]{5,7,9,8,3,2,4};
+        TreeNode treeNodeA = arrayToTreeList(A, 0);
+        System.out.println(calculateDepth(treeNodeA));
+    }
+
+
+    public int calculateDepth(TreeNode root) {
+
+        if(root == null) return 0;
+        return so(root.getLeft(),root.getRight())+1;
+    }
+
+    public int so(TreeNode left,TreeNode right) {
+        if(left == null&&right==null) return 0;
+        if(left == null) return so(right.getLeft(),right.getRight())+1;
+        if(right == null) return so(left.getLeft(),left.getRight())+1;
+        return Math.max(so(left.getLeft(),left.getRight()), so(right.getLeft(),right.getRight())) + 1;
+    }
 }
