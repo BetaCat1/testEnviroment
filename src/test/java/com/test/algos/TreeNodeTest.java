@@ -288,4 +288,20 @@ public class TreeNodeTest {
         if(right == null) return so(left.getLeft(),left.getRight())+1;
         return Math.max(so(left.getLeft(),left.getRight()), so(right.getLeft(),right.getRight())) + 1;
     }
+
+
+    @Test
+    @DisplayName("判断是否为平衡二叉树")
+    public void test10() {
+        Integer[] A  = new Integer[]{5,7,9,8,3,2,4};
+        TreeNode treeNodeA = arrayToTreeList(A, 0);
+        System.out.println(isBalanced(treeNodeA));
+    }
+
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return Math.abs(calculateDepth(root.getLeft()) - calculateDepth(root.getRight()))<=1 &&(isBalanced(root.getLeft())&&isBalanced(root.getRight()));
+    }
 }
