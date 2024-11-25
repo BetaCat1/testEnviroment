@@ -304,4 +304,30 @@ public class TreeNodeTest {
         }
         return Math.abs(calculateDepth(root.getLeft()) - calculateDepth(root.getRight()))<=1 &&(isBalanced(root.getLeft())&&isBalanced(root.getRight()));
     }
+
+    @Test
+    @DisplayName("求二叉搜索树的最近公共祖先")
+    public void test11() {
+        Integer[] A  = new Integer[]{5,7,9,8,3,2,4};
+        TreeNode treeNodeA = arrayToTreeList(A, 0);
+        System.out.println(isBalanced(treeNodeA));
+    }
+
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        if(root.getVal()<p.getVal()&&root.getVal()<q.getVal()){
+//            在root的右子树中
+            lowestCommonAncestor(root.getRight(), p, q);
+        }
+
+        if(root.getVal()>p.getVal()&&root.getVal()>q.getVal()){
+//            在root的左子树中
+            lowestCommonAncestor(root.getLeft(), p, q);
+        }
+//        root=p或者q
+        return root;
+
+
+    }
 }
