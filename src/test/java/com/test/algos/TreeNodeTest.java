@@ -330,4 +330,29 @@ public class TreeNodeTest {
 
 
     }
+
+    @Test
+    @DisplayName("寻找二叉树的最近公共祖先")
+    public void test12() {
+        Integer[] A  = new Integer[]{5,7,9,8,3,2,4};
+        TreeNode treeNodeA = arrayToTreeList(A, 0);
+        System.out.println(isBalanced(treeNodeA));
+    }
+
+
+    public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor1(root.getLeft(), p, q);
+        TreeNode right = lowestCommonAncestor1(root.getRight(), p, q);
+        if(left==null){
+            return right;
+        }
+        if (right ==null) return left;
+        return root;
+    }
+
+
+
 }
