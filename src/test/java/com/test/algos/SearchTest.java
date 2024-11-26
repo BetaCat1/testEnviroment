@@ -36,7 +36,7 @@ public class SearchTest {
     }
 
     /* 二分查找插入点（无重复元素） */
-    public int binarySearch1(int[] nums, int target) {
+    public int binarySearchInsertionSimple(int[] nums, int target) {
         int i = 0, j = nums.length - 1,m;
         while(i<=j){
             m = i + (j - i) / 2;
@@ -54,7 +54,7 @@ public class SearchTest {
     }
 
     /* 二分查找插入点（存在重复元素） */
-    public int binarySearch2(int[] nums, int target) {
+    public int binarySearchInsertion(int[] nums, int target) {
         int i = 0, j = nums.length - 1,m;
         while(i<=j){
             m = i + (j - i) / 2;
@@ -65,10 +65,22 @@ public class SearchTest {
                 j = m - 1;
             }
             if(nums[m]==target){
-                j= m-1;
+//                i = m + 1;找右边界
+                j = m - 1;
             }
         }
         return i;
+    }
+
+
+    @Test
+    @DisplayName("找边界")
+    public void test02() {
+//        输入：heights = [14,2,27,-5,28,13,39], limit = 3
+//输出：[27,27,28,28,39]
+        int[] input = new int[]{1, 2, 3, 4, 5, 6, 6, 6, 9};
+        System.out.println(binarySearchInsertion(input,6));
+
     }
 
 }
