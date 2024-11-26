@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class SearchTest {
 
@@ -83,4 +84,29 @@ public class SearchTest {
 
     }
 
+
+    @Test
+    @DisplayName("招式拆解II")
+    public void test03() {
+//        输入：heights = [14,2,27,-5,28,13,39], limit = 3
+//输出：[27,27,28,28,39]
+        int[] input = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+        System.out.println(binarySearch(input,10));
+
+    }
+
+    public char dismantlingAction(String arr) {
+        char[] chars = arr.toCharArray();
+        HashMap<Character, Boolean> map = new HashMap<>();
+        for (char a : chars) {
+            map.put(a, !map.containsKey(a));
+
+        }
+        for (char a : chars){
+            if(map.get(a)){
+                return a;
+            }
+        }
+        return ' ';
+    }
 }
