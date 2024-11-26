@@ -34,4 +34,41 @@ public class SearchTest {
         }
         return -1;
     }
+
+    /* 二分查找插入点（无重复元素） */
+    public int binarySearch1(int[] nums, int target) {
+        int i = 0, j = nums.length - 1,m;
+        while(i<=j){
+            m = i + (j - i) / 2;
+            if(nums[m]<target){
+                i = m + 1;
+            }
+            if(nums[m]>target){
+                j = m - 1;
+            }
+            if(nums[m]==target){
+                return m;
+            }
+        }
+        return i;
+    }
+
+    /* 二分查找插入点（存在重复元素） */
+    public int binarySearch2(int[] nums, int target) {
+        int i = 0, j = nums.length - 1,m;
+        while(i<=j){
+            m = i + (j - i) / 2;
+            if(nums[m]<target){
+                i = m + 1;
+            }
+            if(nums[m]>target){
+                j = m - 1;
+            }
+            if(nums[m]==target){
+                j= m-1;
+            }
+        }
+        return i;
+    }
+
 }
