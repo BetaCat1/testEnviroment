@@ -73,6 +73,23 @@ public class SearchTest {
         return i;
     }
 
+    public int binarySearchInsertionRight(int[] nums, int target) {
+        int i = 0, j = nums.length - 1,m;
+        while(i<=j){
+            m = i + (j - i) / 2;
+            if(nums[m]<target){
+                i = m + 1;
+            }
+            if(nums[m]>target){
+                j = m - 1;
+            }
+            if(nums[m]==target){
+                i = m + 1;
+            }
+        }
+        return i;
+    }
+
 
     @Test
     @DisplayName("找边界")
@@ -108,5 +125,23 @@ public class SearchTest {
             }
         }
         return ' ';
+    }
+
+
+    @Test
+    @DisplayName("统计目标成绩的出现次数")
+    public void test04() {
+//        输入：heights = [14,2,27,-5,28,13,39], limit = 3
+//输出：[27,27,28,28,39]
+        int[] input = new int[]{2, 2, 3, 4, 4, 4, 5, 6, 6, 8};
+        int target = 1;
+        System.out.println(countTarget(input,target));
+
+    }
+
+    public int countTarget(int[] scores, int target) {
+        int left = binarySearchInsertion(scores, target);
+        int right = binarySearchInsertionRight(scores, target);
+        return right - left;
     }
 }
