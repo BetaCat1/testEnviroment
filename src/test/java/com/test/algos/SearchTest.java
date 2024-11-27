@@ -172,6 +172,35 @@ public class SearchTest {
     }
 
 
+    @Test
+    @DisplayName("寻找目标值 - 二维数组")
+    public void test06() {
+//        输入：heights = [14,2,27,-5,28,13,39], limit = 3
+//输出：[27,27,28,28,39]
+        int[][] input = new int[][]{{2,3,6,8},{4,5,8,9},{5,9,10,12}};
+        int target = 8;
+        System.out.println(findTargetIn2DPlants(input,target));
+
+    }
+
+
+    public boolean findTargetIn2DPlants(int[][] plants, int target) {
+        int i = plants.length - 1, j = 0;
+        while(i>=0&&j<=plants[0].length-1){
+            if(plants[i][j]>target){
+                i--;
+            }
+            if(plants[i][j]<target){
+                j++;
+            }
+            if(plants[i][j]==target){
+                return true;
+            }
+        }
+        return false;
+
+
+    }
 
 
 
