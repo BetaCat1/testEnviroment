@@ -144,4 +144,36 @@ public class SearchTest {
         int right = binarySearchInsertionRight(scores, target);
         return right - left;
     }
+
+
+    @Test
+    @DisplayName("点名")
+    public void test05() {
+//        输入：heights = [14,2,27,-5,28,13,39], limit = 3
+//输出：[27,27,28,28,39]
+        int[] input = new int[]{0,  2, 3, 4, 5, 6,7, 8};
+        int target = 1;
+        System.out.println(takeAttendance(input));
+
+    }
+
+    public int takeAttendance(int[] records) {
+        int i = 0, j = records.length - 1;
+        while (i<=j) {
+            int m = i + (j - i) / 2;
+            if(records[m]>m){//缺号在前[i,m-1]
+                j = m - 1;
+            }
+            if(records[m]==m){//缺号在后[m+1,j]
+                i = m + 1;
+            }
+        }
+        return i;
+    }
+
+
+
+
+
+
 }
