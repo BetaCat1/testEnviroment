@@ -178,7 +178,7 @@ public class SearchTest {
 //        输入：heights = [14,2,27,-5,28,13,39], limit = 3
 //输出：[27,27,28,28,39]
         int[][] input = new int[][]{{2,3,6,8},{4,5,8,9},{5,9,10,12}};
-        int target = 8;
+        int target = 1;
         System.out.println(findTargetIn2DPlants(input,target));
 
     }
@@ -190,10 +190,10 @@ public class SearchTest {
             if(plants[i][j]>target){
                 i--;
             }
-            if(plants[i][j]<target){
+            else if(plants[i][j]<target){
                 j++;
             }
-            if(plants[i][j]==target){
+            else{
                 return true;
             }
         }
