@@ -202,7 +202,32 @@ public class SearchTest {
 
     }
 
+    @Test
+    @DisplayName("库存管理 I")
+    public void test07() {
+//        输入：heights = [14,2,27,-5,28,13,39], limit = 3
+//输出：[27,27,28,28,39]
+        int[] input = new int[]{4,5,8,3,4};
+        int target = 1;
+        System.out.println(inventoryManagement(input));
 
+    }
 
+    public int inventoryManagement(int[] stock) {
+        int i = 0, j = stock.length - 1;
+        while(i<j){
+            int m = i + (j - i) / 2;
+            if (stock[m] < stock[j]) {
+                j = m;
+            }
+            else if (stock[m] > stock[j]) {
+                i = m + 1;
+            }else {
+                j--;
+            }
+
+        }
+        return stock[i];
+    }
 
 }
