@@ -12,6 +12,7 @@ import static com.test.algos.TreeNodeTest.decorateRecord;
 public class SplitTest {
 
     int[] preorder;
+    int[] post;
     HashMap<Integer, Integer> hmap = new HashMap<>();
     @Test
     @DisplayName("构建树")
@@ -50,4 +51,64 @@ public class SplitTest {
 
         return rootNode;
     }
+
+
+    @Test
+    @DisplayName("验证二叉搜索树的后序遍历序列")
+    public void test02() {
+        int[] postorder = new int[]{4,9,6,5,8};
+        post = postorder;
+        boolean res = verifyTreeOrder(postorder);
+
+
+        System.out.println(res);
+
+
+    }
+
+
+    public boolean verifyTreeOrder(int[] postorder) {
+        return validate(post.length - 1, 0, post.length - 1);
+    }
+
+
+
+    private boolean validate(int root,int left,int right){
+        if(left>=right){
+            return true;
+        }
+        int m=0;
+        for (int i = 0; i <= right; i++) {
+            if(post[i]>post[root]){
+                m = i;
+                break;
+            }
+        }
+
+        for (int i = m; i <= right; i++) {
+            if(post[i]<post[root]){
+                return false;
+            }
+        }
+        return validate(m-1,0,m-1)&&validate(right-1,m,m-1);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
