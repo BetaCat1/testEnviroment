@@ -20,7 +20,7 @@ public class TreeNodeTest {
         System.out.println(Arrays.toString(decorateRecord(treeNode)));
     }
 
-    public int[] decorateRecord(TreeNode root) {
+    public static int[] decorateRecord(TreeNode root) {
         if (root == null) return new int[0];
         Queue<TreeNode> queue = new LinkedList();
         List<Integer> res = new ArrayList<>();
@@ -41,7 +41,7 @@ public class TreeNodeTest {
     }
 
 
-    private TreeNode arrayToTreeList(Integer[] input,int index){
+    public static TreeNode arrayToTreeList(Integer[] input,int index){
         if(index>input.length-1||input[index]==null){
             return null;
         }
