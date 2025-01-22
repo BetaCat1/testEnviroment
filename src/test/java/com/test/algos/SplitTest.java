@@ -13,6 +13,7 @@ public class SplitTest {
 
     int[] preorder;
     int[] post;
+    int[] record, tmp;
     HashMap<Integer, Integer> hmap = new HashMap<>();
     @Test
     @DisplayName("构建树")
@@ -95,8 +96,57 @@ public class SplitTest {
     }
 
 
+    @Test
+    @DisplayName("交易逆序对的总数")
+    public void test03() {
+        int[] stock  = new int[]{9, 7, 5,4,6};
+        int res = reversePairs(stock);
+        System.out.println(res);
 
 
+
+    }
+
+    public int reversePairs(int[] record) {
+        this.record = record;
+        tmp = new int[record.length];
+        return mergeSort(0, record.length-1);
+
+
+    }
+
+
+    private int mergeSort(int l, int r) {
+        if (l >= r) {
+            return 0;
+        }
+        int m = (l + r) / 2;
+        int res = mergeSort(l, m) + mergeSort(m + 1, r);
+//        合并阶段
+        int i = l;
+        int j = m + 1;
+        for (int k = l; k <= r; k++) {
+            tmp[k] = record[k];
+
+        }
+
+        for (int k = l; k <= r; k++) {
+             if (j == r + 1 || tmp[i] <= tmp[j]) {
+                record[k] = tmp[i++];
+            } else if (i == m + 1) {
+                record[k] = tmp[j++];
+            }else {
+                res += m - i + 1;
+                record[k] = tmp[j++];
+            }
+
+
+        }
+
+        return res;
+
+
+    }
 
 
 
