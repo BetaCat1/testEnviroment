@@ -118,4 +118,84 @@ public class DynamicTest {
         }
         return res;
     }
+
+
+    @Test
+    @DisplayName("编辑距离")
+    public void test05() {
+
+        System.out.println(editDistanceDP("c","abc"));
+
+    }
+
+
+    /* 编辑距离：动态规划 */
+    int editDistanceDP(String s, String t) {
+        int n = s.length(), m = t.length();
+        int[][] dp = new int[n + 1][m + 1];
+        // 状态转移：首行首列
+        for (int i = 1; i <= n; i++) {
+            dp[i][0] = i;
+        }
+        for (int j = 1; j <= m; j++) {
+            dp[0][j] = j;
+        }
+        // 状态转移：其余行和列
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (s.charAt(i - 1) == t.charAt(j - 1)) {
+                    // 若两字符相等，则直接跳过此两字符
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    // 最少编辑步数 = 插入、删除、替换这三种操作的最少编辑步数 + 1  这能预见未来的？
+                    dp[i][j] = Math.min(Math.min(dp[i][j - 1], dp[i - 1][j]), dp[i - 1][j - 1]) + 1;
+                }
+            }
+        }
+        return dp[n][m];
+    }
+
+
+    @Test
+    @DisplayName("连续天数的最高销售额")
+    public void test06() {
+
+
+//        int[] sales = new int[]{5,4,-1,7,8};
+//        int[] sales = new int[]{-2,1,-3,4,-1,2,1,-5,4};
+        int[] sales = new int[]{8,-19,5,-4,20};
+
+        System.out.println(maxSales(sales));
+
+
+    }
+
+
+
+    public int maxSales(int[] sales) {
+
+        int length = sales.length;
+
+
+        int res = sales[0];
+//        int flag = sales[0];
+        int flag = sales[0];
+
+
+        for (int i = 1; i <= length - 1; i++) {
+            if(flag<=0){
+                flag = sales[i];
+
+            }else {
+                flag += sales[i];
+
+            }
+            res = Math.max(res, flag);
+
+        }
+        return res;
+
+
+
+    }
 }
