@@ -198,4 +198,36 @@ public class DynamicTest {
 
 
     }
+
+
+    @Test
+    @DisplayName("买卖芯片的最佳时机")
+    public void test07() {
+
+        int[] prices = new int[]{3, 6, 2, 9, 8, 5};
+
+        System.out.println(bestTiming(prices));
+
+    }
+
+
+    public int bestTiming(int[] prices) {
+
+        int length = prices.length;
+        if(length<=1){
+            return 0;
+        }
+        int res = 0;
+
+        int[] dp = new int[length];
+
+        int cost = prices[0];
+        for (int i = 1; i <=length -1; i++) {
+            cost = Math.min(cost, prices[i]);
+            dp[i] =  prices[i ]- cost;
+            res = Math.max(res, dp[i]);
+        }
+        return res;
+
+    }
 }
