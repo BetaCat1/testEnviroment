@@ -275,4 +275,50 @@ public class DynamicTest {
     }
 
 
+    @Test
+    @DisplayName("模糊搜索验证")
+    public void test09() {
+
+
+        String article = "ab";
+        String input = "a*";
+
+
+        System.out.println(articleMatch(article,input));
+
+    }
+
+
+    public boolean articleMatch(String article, String input) {
+
+        int a = article.length()+1;
+        int p = input.length() + 1;
+        boolean[][] dp = new boolean[a][p];
+        dp[0][0] = true;
+         /*因为如果s为空，那么p只能是类似于 'a*.*' 的结构，（其中奇数位是 'a' 和 '.' ，偶数位都是' * '），同时让p中的 'a' 和 '.'
+        一次都不出现（也就是作者描述的奇数位出现0次），p才能“生成”空字符串的形式，从而和空字符串s相匹配。
+        * */
+        for (int j = 2; j <= p - 1; j++) {
+            dp[0][j] = input.charAt(j - 1) == '*' && dp[0][j - 2];
+        }
+
+        for (int i = 1; i <=a -1; i++) {
+            for (int j = 1; j <= p - 1; j++) {
+                if(input.charAt(j-1)=='*'){
+                    dp[i][j] = dp[i][j - 2]
+                            ||(article.charAt(i-1)==input.charAt(j-2)&&dp[i-1][j])
+                            ||(input.charAt(j-2)=='.'&&dp[i-1][j]);
+                }else {
+                    dp[i][j] = dp[i - 1][j - 1] && input.charAt(j - 1) == '.'
+                            || dp[i - 1][j - 1] && article.charAt(i - 1) == input.charAt(j - 1);
+                }
+
+
+            }
+        }
+        return dp[a - 1][p - 1];
+
+
+    }
+
 }
