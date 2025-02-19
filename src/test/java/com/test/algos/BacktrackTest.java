@@ -54,10 +54,10 @@ public class BacktrackTest {
 
 
     @Test
-    @DisplayName("全排列I")
+    @DisplayName("全排列I  考虑重复元素")
     public void test02() {
 
-        int [] choices = new int[]{3,1,2};
+        int [] choices = new int[]{1,1,2};
         boolean[] selected = new boolean[choices.length];
         for (int i = 0; i <= choices.length - 1; i++) {
             selected[i] = false;
@@ -78,10 +78,11 @@ public class BacktrackTest {
             res.add(new ArrayList<Integer>(state));
             return;
         }
-
+        Set<Integer> duplicated = new HashSet<Integer>();
 
         for (int i = 0; i <= choices.length - 1; i++) {
-            if (!selected[i]) {
+            if (!selected[i]&&!duplicated.contains(choices[i])) {
+                duplicated.add(choices[i]);
                 state.add(choices[i]);
                 selected[i] = true;
                 backtrack(state, choices, selected, res);
