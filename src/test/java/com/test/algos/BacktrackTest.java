@@ -65,33 +65,73 @@ public class BacktrackTest {
 
         List<List<Integer>> res = new ArrayList<List<Integer>>();
 
-        backtrack(new ArrayList<>(), choices, selected, res);
+//        backtrack(new ArrayList<>(), choices, selected, res);
 
         System.out.println(res);
 
     }
 
 
-    public void backtrack(List<Integer> state, int[] choices, boolean[] selected, List<List<Integer>> res){
+//    public void backtrack(List<Integer> state, int[] choices, boolean[] selected, List<List<Integer>> res){
+//
+//        if(state.size()==choices.length){
+//            res.add(new ArrayList<Integer>(state));
+//            return;
+//        }
+//        Set<Integer> duplicated = new HashSet<Integer>();
+//
+//        for (int i = 0; i <= choices.length - 1; i++) {
+//            if (!selected[i]&&!duplicated.contains(choices[i])) {
+//                duplicated.add(choices[i]);
+//                state.add(choices[i]);
+//                selected[i] = true;
+//                backtrack(state, choices, selected, res);
+//                state.remove(state.size() - 1);
+//                selected[i] = false;
+//            }
+//
+//
+//        }
+//
+//
+//
+//
+//    }
 
-        if(state.size()==choices.length){
-            res.add(new ArrayList<Integer>(state));
+
+
+    @Test
+    @DisplayName("求解子集和 I")
+    public void test03() {
+        int [] nums = new int[]{4,3,5};
+        List<Integer> state = new ArrayList<>(); // 状态（子集）
+        Arrays.sort(nums); // 对 nums 进行排序
+        int start = 0; // 遍历起始点
+        int target = 9;
+        List<List<Integer>> res = new ArrayList<>(); // 结果列表（子集列表）
+        backtrack(state, target, nums, start, res);
+
+        System.out.println(res);
+
+    }
+
+
+    public void backtrack(List<Integer> state, int target, int[] choices, int start, List<List<Integer>> res){
+
+        if (target == 0) {
+            res.add(new ArrayList<>(state));
             return;
         }
-        Set<Integer> duplicated = new HashSet<Integer>();
 
-        for (int i = 0; i <= choices.length - 1; i++) {
-            if (!selected[i]&&!duplicated.contains(choices[i])) {
-                duplicated.add(choices[i]);
-                state.add(choices[i]);
-                selected[i] = true;
-                backtrack(state, choices, selected, res);
-                state.remove(state.size() - 1);
-                selected[i] = false;
+        for (int i = start; i <= choices.length - 1; i++) {
+            if(target-choices[i]<0){
+                break;
             }
-
-
+            state.add(choices[i]);
+            backtrack(state, target - choices[i], choices, i, res);
+            state.remove(state.size() - 1);
         }
+
 
 
 
