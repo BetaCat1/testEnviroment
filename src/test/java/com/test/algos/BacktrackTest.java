@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.*;
 
 public class BacktrackTest {
 
@@ -50,4 +51,51 @@ public class BacktrackTest {
         }
         return rec[left][right];
     }
+
+
+    @Test
+    @DisplayName("全排列I")
+    public void test02() {
+
+        int [] choices = new int[]{3,1,2};
+        boolean[] selected = new boolean[choices.length];
+        for (int i = 0; i <= choices.length - 1; i++) {
+            selected[i] = false;
+        }
+
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+
+        backtrack(new ArrayList<>(), choices, selected, res);
+
+        System.out.println(res);
+
+    }
+
+
+    public void backtrack(List<Integer> state, int[] choices, boolean[] selected, List<List<Integer>> res){
+
+        if(state.size()==choices.length){
+            res.add(new ArrayList<Integer>(state));
+            return;
+        }
+
+
+        for (int i = 0; i <= choices.length - 1; i++) {
+            if (!selected[i]) {
+                state.add(choices[i]);
+                selected[i] = true;
+                backtrack(state, choices, selected, res);
+                state.remove(state.size() - 1);
+                selected[i] = false;
+            }
+
+
+        }
+
+
+
+
+    }
+
+
 }
