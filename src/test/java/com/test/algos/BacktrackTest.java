@@ -139,4 +139,47 @@ public class BacktrackTest {
     }
 
 
+    @Test
+    @DisplayName("字母迷宫")
+    public void test04() {
+
+        char[][] grid = new char[][]{{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
+        String target = "ABCCED";
+        System.out.println(wordPuzzle(grid, target));
+
+    }
+
+    public boolean wordPuzzle(char[][] grid, String target) {
+        for (int i = 0; i <= grid.length - 1; i++) {
+            for (int j = 0; j <= grid[0].length - 1; j++) {
+                if(dfs(i, j, 0, grid, target)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean dfs(int i,int j,int k,char[][] grid,String target){
+        if(i<0||j<0||i> grid.length-1||j>grid[0].length - 1||target.charAt(k)!=grid[i][j]){
+            return false;
+        }
+        if(k==target.length()-1){
+            return true;
+        }
+
+        grid[i][j] = '\0';
+        boolean res = dfs(i - 1, j, k + 1, grid, target)
+                || dfs(i + 1, j, k + 1, grid, target)
+                || dfs(i, j + 1, k + 1, grid, target)
+                || dfs(i, j - 1, k + 1, grid, target);
+        grid[i][j] = target.charAt(k);
+        return res;
+
+
+    }
+
+
+
+
 }
