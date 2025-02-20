@@ -1,5 +1,6 @@
 package com.test.algos;
 
+import com.test.datastructure.TreeNode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -181,5 +182,43 @@ public class BacktrackTest {
 
 
 
+    @Test
+    @DisplayName("二叉树中和为目标值的路径")
+    public void test05() {
+        Integer[] inputs = new Integer[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, 5, 1};
+        TreeNode treeNode = TreeNodeTest.arrayToTreeList(inputs, 0);
+        System.out.println(pathTarget(treeNode, 22));
 
+    }
+/*
+这道题之所以答案不对是因为构造树的那个方法有问题，没有考虑到当中缺一个子树的情况，但是在leetcode上是对的
+ */
+    public List<List<Integer>> pathTarget(TreeNode root, int target) {
+
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        backtrack01(new ArrayList<>(), target, root, res);
+        return res;
+    }
+
+
+    public void backtrack01(List<Integer> state, int target,  TreeNode root, List<List<Integer>> res){
+
+        if(root==null){
+            return;
+        }
+
+        state.add(root.getVal());
+        if (target- root.getVal() == 0&&root.getRight()==null&&root.getLeft()==null) {
+            res.add(new ArrayList<>(state));
+        }
+
+        backtrack01(state, target - root.getVal(),  root.getLeft(), res);
+        backtrack01(state, target- root.getVal(), root.getRight(), res);
+        state.remove(state.size() - 1);
+
+
+
+
+
+    }
 }
