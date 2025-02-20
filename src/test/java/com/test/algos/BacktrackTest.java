@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BacktrackTest {
 
+    public String goods = "agew";
     @Test
     @DisplayName("斐波那契数")
     public void test01() {
@@ -221,4 +223,55 @@ public class BacktrackTest {
 
 
     }
+
+    @Test
+    @DisplayName("套餐内商品的排列顺序")
+    public void test06() {
+
+//        String[] strings = goodsOrder(goods);
+//        for (String a:strings){
+//            System.out.println(a);
+//        }
+
+        System.out.println(goodsOrder(goods));
+    }
+
+    public List<String> goodsOrder(String goods) {
+        List<String> res = new ArrayList<>();
+        char[] input = goods.toCharArray();
+        boolean[] selected = new boolean[input.length];
+        backtrack02(new ArrayList<>(), input,selected,  res);
+        return res ;
+//["aegw","aewg","agew","agwe","aweg","awge","eagw","eawg","egaw","egwa","ewag","ewga","gaew","gawe","geaw","gewa","gwae","gwea","waeg","wage","weag","wega","wgae","wgea"]
+//[agew, agwe, aegw, aewg, awge, aweg, gaew, gawe, geaw, gewa, gwae, gwea, eagw, eawg, egaw, egwa, ewag, ewga, wage, waeg, wgae, wgea, weag, wega]
+    }
+
+
+    public void backtrack02(List<Character> state, char[] input, boolean[] selected,  List<String> res){
+
+        if(input.length==state.size()){
+            res.add(String.valueOf(state.stream()
+                    .map(String::valueOf)  // 将 Character 转换为 String
+                    .collect(Collectors.joining())));
+            return;
+        }
+
+        HashSet<Character> set = new HashSet<>();
+        for (int i = 0; i <= input.length - 1; i++) {
+            if(!selected[i] && !set.contains(input[i])) { // 重复，因此剪枝
+                set.add(input[i]);
+                state.add(input[i]);
+                selected[i] = true;
+                backtrack02(state, input, selected, res);
+                selected[i] = false;
+                state.remove(state.size() - 1);
+            }
+        }
+
+
+
+
+
+    }
+
 }
